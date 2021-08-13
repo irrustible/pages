@@ -32,6 +32,7 @@ extern crate alloc;
 
 use alloc::alloc::{Layout, alloc, dealloc};
 use core::convert::TryInto;
+use core::fmt;
 use core::marker::PhantomData;
 use core::mem::MaybeUninit;
 use core::ptr::{NonNull, drop_in_place};
@@ -147,6 +148,12 @@ impl<H, T> Page<H, T> {
 
 unsafe impl<H: Send, T: Send> Send for Page<H, T> {}
 unsafe impl<H: Sync, T: Sync> Sync for Page<H, T> {}
+
+impl<H, T> fmt::Debug for Page<H, T> {
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        write!(fmt, "Page[{}]", self.capacity())
+    }
+}
 
 impl<H, T> Drop for Page<H, T> {
     // Safety: we have exclusive access.

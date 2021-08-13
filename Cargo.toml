@@ -1,6 +1,6 @@
 [package]
 name = "pages"
-version = "0.1.0"
+version = "0.1.1"
 description = "A dynamically-sized heap-backed data page. Comprises a user-chosen header and data array packed into a single allocation."
 keywords = []
 categories = ["data-structures", "no-std", "rust-patterns"]
